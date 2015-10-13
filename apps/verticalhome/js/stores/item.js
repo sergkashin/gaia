@@ -338,7 +338,7 @@
               'readwrite',
               function (txn, store) {
                 var request = store.get(object.index);
-                request.onsuccess = function () {
+                request.onsuccess = function (req) {
                   var objFromDB = req.result;
                   if (objFromDB) {
                     var DBIndex = objFromDB.index;

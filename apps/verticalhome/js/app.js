@@ -134,10 +134,10 @@
           });
       }.bind(this));
 
-        this.pinManager = new PinAppManager();
-        window.addEventListener('pin-app-loaded', function(e) {
-          this.pinManager.init();
-        }.bind(this));
+      this.pinManager = new PinAppManager();
+      window.addEventListener('pin-app-loaded', function(e) {
+        this.pinManager.init();
+      }.bind(this));
     },
 
     renderGrid: function() {

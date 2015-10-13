@@ -3,6 +3,9 @@
 (function (exports) {
 
   function PinAppItem(index) {
+    if (index === null || index === undefined){
+      return false;
+    }
     this.index = index;
     this.element = document.querySelector("div[data-index='" + this.index + "']");
     this.icon = this.element.querySelector('.pin-app-icon');
