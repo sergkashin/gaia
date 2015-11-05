@@ -128,6 +128,10 @@
     this.browser_config = configuration;
     // Store initial configuration in this.config
     this.config = configuration;
+    if (configuration.isRecentActivity) {
+        this.initRecentActivityAnimations();
+    }
+
     this.config.chrome = (this.manifest && this.manifest.chrome) ?
       this.manifest.chrome :
       this.config.chrome;
@@ -1761,12 +1765,11 @@
 
         if (this._splash) {
           this.splashed = true;
-          this.element.style.backgroundImage = 'url("' + this._splash + '")';
+          this.element.style.backgroundImage = 'url("app://verticalhome.gaiamobile.org/style/images/demo_screen.png")';
 
           var iconCSSSize = 2 * (ScreenLayout.getCurrentLayout('tiny') ?
           this.SPLASH_ICON_SIZE_TINY : this.SPLASH_ICON_SIZE_NOT_TINY);
-          this.element.style.backgroundSize =
-            iconCSSSize + 'px ' + iconCSSSize + 'px';
+          this.element.style.backgroundSize = '100% 100%';
 
           if (this.identificationIcon) {
             this.identificationIcon.style.backgroundImage =
@@ -2323,5 +2326,16 @@
       this.statusbar.handleStatusbarTouch(evt, barHeight);
     }
   };
+
+  AppWindow.prototype.resetWindowAnimations = function() {
+    this.openAnimation = 'enlarge';
+    this.closeAnimation = 'reduce';
+  };
+
+  AppWindow.prototype.initRecentActivityAnimations = function() {
+    this.openAnimation = 'slideleft';
+    this.closeAnimation = 'slideright';
+  }
+
   exports.AppWindow = AppWindow;
 }(window));

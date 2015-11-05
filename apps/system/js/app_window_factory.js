@@ -139,6 +139,11 @@
           if (detail.extra && detail.extra.manifestURL) {
             config.parentApp = detail.extra.manifestURL;
           }
+          if (detail.target.filters.type === 'recent' && detail.target.filters.id &&
+                  detail.target.filters.id === detail.manifestURL) {
+              config.isRecentActivity = true;
+          }
+
           // TODO: Create activity window instance
           // or background app window instance for system message here.
           this.launch(config);
@@ -193,6 +198,11 @@
         if (config.evtType == 'appopenwindow') {
           app.browser.element.src = config.url;
         }
+        if (config.isRecentActivity) {
+          app.initRecentActivityAnimations();
+        } else {
+          app.resetWindowAnimations();
+        }
         app.reviveBrowser();
       } else {
         // homescreenWindowManager already listens webapps-launch and open-app.
@@ -205,6 +215,7 @@
 
     trackLauchingWindow: function(config) {
       var app = new AppWindow(config);
+
       if (config.stayBackground) {
         return;
       }

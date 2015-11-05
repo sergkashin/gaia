@@ -35,7 +35,8 @@ var ActivityHandler = {
     window.navigator.mozSetMessageHandler('activity',
       this._onActivity.bind(this, {
         'new': this._onNewActivity,
-        'share': this._onShareActivity
+        'share': this._onShareActivity,
+        'show' : this._onShowActivity
       })
     );
 
@@ -75,6 +76,13 @@ var ActivityHandler = {
       console.error('Unrecognized activity: "' + name + '"');
     }
   },
+
+  _onShowActivity: function showActivityHandler(activity) {
+    // FIXME: TODO: open unread messages list
+    Navigation.toPanel('thread-list').then(
+      Compose.append.bind(Compose, null)
+    );
+  }
 
   /**
   * Finds a contact from a number or email address.

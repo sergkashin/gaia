@@ -151,21 +151,27 @@ var CallHandler = (function callHandler() {
     // Workaround here until the bug 787415 is fixed
     // Gecko is sending an activity event in every multiple entry point
     // instead only the one that the href match.
-    if (activity.source.name != 'dial') {
-      return;
-    }
-
-    var number = activity.source.data.number;
-    if (number) {
-      KeypadManager.updatePhoneNumber(number, 'begin', false);
-      if (window.location.hash != '#keyboard-view') {
-        window.location.hash = '#keyboard-view';
+    if (activity.source.name === 'dial') {
+      var number = activity.source.data.number;
+      if (number) {
+        KeypadManager.updatePhoneNumber(number, 'begin', false);
+        if (window.location.hash != '#call-log-view') {
+          window.location.hash = '#call-log-view';
+        }
+      } else {
+        if (window.location.hash != '#contacts-view') {
+          window.location.hash = '#contacts-view';
+        }
+        NavbarManager._contactsHome();
       }
-    } else {
-      if (window.location.hash != '#contacts-view') {
-        window.location.hash = '#contacts-view';
+    } else if (activity.source.name === 'show') {
+      var activityId = activity.source.data.id;
+      console.log('activity id: ' + activityId)
+      if (activityId && activityId === 'app://communications.gaiamobile.org/manifest.webapp') {
+        if (window.location.hash !== '#call-log-view') {
+          window.location.hash = '#call-log-view';
+        }
       }
-      NavbarManager._contactsHome();
     }
   }
 

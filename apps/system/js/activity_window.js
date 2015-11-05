@@ -98,7 +98,7 @@
    * Turn on this flag to dump debugging messages for all activity windows.
    * @type {Boolean}
    */
-  ActivityWindow.prototype._DEBUG = false;
+  ActivityWindow.prototype._DEBUG = true;
 
   ActivityWindow.prototype.openAnimation = 'fade-in';
   ActivityWindow.prototype.closeAnimation = 'fade-out';

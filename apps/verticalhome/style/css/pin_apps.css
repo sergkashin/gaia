@@ -1,3 +1,48 @@
+#central-app-icons {
+  width: 100%;
+  height: 7.5rem;
+  position: fixed;
+  top: 0rem;
+  text-align: center;
+  visibility: visible;
+  transition: all 0.3s;
+}
+#central-app-icons .recent-shown.pin-app-recent-right-arrow {
+  visibility: visible;
+  animation-name: recentIconsSlideIn;
+  animation-duration: 0.3s;
+}
+
+#central-app-icons .pin-app-recent-right-arrow {
+  height: 1.3rem;
+  width: 0.6rem;
+  position: absolute;
+  visibility: hidden;
+  top: 12.8rem;
+  right: 5.5rem;
+  animation-name: recentIconsSlideOut;
+  animation-duration: 0.3s;
+  /*background-image: url(/style/images/nav_arrow_right.png);*/
+}
+
+#central-app-icons .recent-shown.pin-app-recent-icon {
+  visibility: visible;
+  animation-name: recentIconsSlideIn;
+  animation-duration: 0.3s;
+}
+
+#central-app-icons .pin-app-recent-icon {
+  height: 7.5rem;
+  width: 7.5rem;
+  visibility: hidden;
+  position: absolute;
+  right: -2.5rem;
+  top: 9.5rem;
+  animation-name: recentIconsSlideOut;
+  animation-duration: 0.3s;
+}
+
+
 #pin-apps-list {
   width: 100%;
   position: fixed;
@@ -99,4 +144,14 @@
 .out-focus {
   margin: 0 auto !important;
   height: 0 !important;
+}
+
+@keyframes recentIconsSlideIn {
+  0%   { transform: translateX(100%); visibility: visible; }
+  100% { transform: translateX(0%); visibility: visible;}
+}
+
+@keyframes recentIconsSlideOut {
+  0%    { transform: translateX(0); visibility: visible; }
+  100%  { transform: translateX(100%); visibility: visible; }
 }

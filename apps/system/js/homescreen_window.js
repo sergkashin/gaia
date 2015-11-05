@@ -232,5 +232,28 @@
     this.fadeOverlay.classList.remove('hidden');
   };
 
+  /**
+   * Sets open and close animations of the HomescreenWindow to animations that should be used
+   * for 'recent activity' navigation.
+   *
+   * this {HomescreenWindow}
+   * memberof HomescreenWindow
+   */
+  HomescreenWindow.prototype.setRecentActivityAnimations = function hw_setRecentActivityAnimations() {
+    this.openAnimation = 'slidetoright';
+    this.closeAnimation = 'slidetoleft';
+  }
+
+  /**
+   * Resets open and close animations of the HomescreenWindow to the default one.
+   *
+   * this {HomescreenWindow}
+   * memberof HomescreenWindow
+   */
+  HomescreenWindow.prototype.resetAnimations = function hw_resetAnimations() {
+    this.openAnimation = 'zoom-out';
+    this.closeAnimation = 'zoom-in';
+  }
+
   exports.HomescreenWindow = HomescreenWindow;
 }(window));

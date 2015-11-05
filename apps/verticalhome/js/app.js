@@ -138,6 +138,8 @@
         this.clock.start();
         this.pinNavigation = new PinAppNavigation(document.getElementById('pin-apps-list'));
         this.pinNavigation.points_selector = '#pin-apps-list .pin-app-item';
+        this.pinNavigation.recent_icon = document.querySelector('#central-app-icons .pin-app-recent-icon');
+        this.pinNavigation.recent_right_arrow_icon = document.querySelector('#central-app-icons .pin-app-recent-right-arrow');
       }.bind(this));
 
     },

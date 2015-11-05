@@ -289,10 +289,11 @@
         }
 
         appNext.open(immediateTranstion ? 'immediate' :
-                      ((switching === true) ? 'invoked' : openAnimation));
+                      ((switching === true) ? 'invoked' :
+                                              openAnimation ? openAnimation : appNext.openAnimation));
         if (appCurrent && appCurrent.instanceID !== appNext.instanceID) {
           appCurrent.close(immediateTranstion ? 'immediate' :
-            ((switching === true) ? 'invoking' : closeAnimation));
+            ((switching === true) ? 'invoking' : closeAnimation ? closeAnimation : appCurrent.closeAnimation));
         } else {
           this.debug('No current running app!');
         }

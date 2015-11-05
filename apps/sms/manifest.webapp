@@ -3,6 +3,7 @@
   "description": "Gaia Messages",
   "type": "certified",
   "launch_path": "/index.html",
+  "recent_icon": "/style/images/recent_icon.png",
   "developer": {
     "name": "The Gaia Team",
     "url": "https://github.com/mozilla-b2g/gaia"
@@ -68,6 +69,14 @@
        },
       "disposition": "inline",
       "returnValue": true
+    },
+    "show": {
+      "filters": {
+        "type": "recent",
+        "id": "app://sms.gaiamobile.org/manifest.webapp"
+      },
+      "href": "/index.html",
+      "disposition": "window"
     }
   },
   "messages": [

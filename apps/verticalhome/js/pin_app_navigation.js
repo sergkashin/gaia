@@ -5,6 +5,7 @@
 /* global configurator */
 /* global dispatchEvent */
 /* global GaiaGrid */
+/* global MozActivity */
 
 (function(exports) {
 
@@ -66,6 +67,7 @@
       this.elements[this.selectedElemIndex].classList.add('middle');
       this.elemList.removeAttribute('style');
       this.middleElem = true;
+      this.updateRecentIconsState();
 
       var toRemoved = this.elemList.querySelector('.removed');
       var toRemoveOutFocus = this.elemList.querySelector('.out-focus');
@@ -203,7 +205,7 @@
           this.elements.splice(-1, 1);
 
           this.prevVerticalKey = 'up';
-
+          this.updateRecentIconsState();
 
           break;
 
@@ -247,6 +249,23 @@
           if (this.selectedElemIndex == 1) {
             this.elemList.style.top = '0rem';
           }
+          this.updateRecentIconsState();
+
+          break;
+
+          case 'ArrowRight':
+            var manifestUrl = this.elements[this.selectedElemIndex].dataset.manifesturl;
+            window.removeEventListener('keydown', this);
+            var recentActivity = new MozActivity({
+                                                     name: 'show',
+                                                     data: {
+                                                         type: 'recent',
+                                                         id: manifestUrl
+                                                     }
+                                                 });
+            recentActivity.onerror = function() {
+              console.log('can\'t open activity. Error: ' + this.error.name);
+            }
 
           break;
 
@@ -263,6 +282,29 @@
           break;
       }
 
+    },
+
+    updateRecentIconsState: function() {
+      if (this.elements[this.selectedElemIndex].getAttribute('id') == "moreApps") {
+        this.recent_icon.classList.remove('recent-shown');
+        this.recent_right_arrow_icon.classList.remove('recent-shown');
+        return;
+      }
+      var appManifest = app.getAppByURL(this.elements[this.selectedElemIndex].dataset.manifesturl).manifest;
+      var dialActivity = appManifest.activities['show'];
+      if (dialActivity && dialActivity.filters.type === 'recent') {
+          this.recent_icon.classList.add('recent-shown');
+          this.recent_right_arrow_icon.classList.add('recent-shown');
+          if (appManifest.recent_icon) {
+            var url = this.elements[this.selectedElemIndex].dataset.manifesturl.split('/');
+            this.recent_icon.src = url[0] + '//' + url[2] + appManifest.recent_icon;
+          } else {
+            this.recent_icon.src = '/style/images/default_app_icon.png';
+          }
+      } else {
+          this.recent_icon.classList.remove('recent-shown');
+          this.recent_right_arrow_icon.classList.remove('recent-shown');
+      }
     },
 
     /**

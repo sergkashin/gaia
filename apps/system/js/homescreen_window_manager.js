@@ -77,10 +77,20 @@
         case 'open-app':
         case 'webapps-launch':
           var detail = evt.detail;
+
           if (detail.manifestURL === homescreenLauncher.manifestURL) {
             this.getHomescreen();
+
             evt.stopImmediatePropagation();
+          } else {
+            if (detail.target && detail.target.filters && detail.target.filters.type === 'recent' &&
+                    detail.target.filters.id === detail.manifestURL) {
+              this.getHomescreen().setRecentActivityAnimations();
+            } else {
+              this.getHomescreen().resetAnimations();
+            }
           }
+
           break;
       }
     },
