@@ -662,3 +662,11 @@
   background: none;
   pointer-events: none;
 }
+
+.appWindow.inline-activity .recent-activity-loading-screen {
+  visibility: visible;
+}
+
+.appWindow.inline-activity.render.active .recent-activity-loading-screen {
+  visibility: hidden;
+}

@@ -152,7 +152,7 @@
         "id": "app://communications.gaiamobile.org/manifest.webapp"
       },
       "href": "/dialer/index.html#call-log-view",
-      "disposition": "window"
+      "disposition": "inline"
     }
   },
 

@@ -1,4 +1,4 @@
-/* global AppWindow, BrowserFrame, OrientationManager */
+/* global AppWindow, BrowserFrame, OrientationManager, SettingsListener */
 'use strict';
 
 (function(exports) {
@@ -84,6 +84,10 @@
     this.publish('creating');
     this.render();
     this.publish('created');
+    if (this.config && this.config.isRecentActivity) {
+      SettingsListener.observe('wallpaper.image', null,
+                               this.wallpaperImageHandler.bind(this));
+    }
   };
 
   ActivityWindow.prototype = Object.create(AppWindow.prototype);
@@ -100,8 +104,17 @@
    */
   ActivityWindow.prototype._DEBUG = true;
 
-  ActivityWindow.prototype.openAnimation = 'fade-in';
-  ActivityWindow.prototype.closeAnimation = 'fade-out';
+  ActivityWindow.prototype.openAnimation = 'slideleft';
+  ActivityWindow.prototype.closeAnimation = 'slideright';
+
+  ActivityWindow.prototype.wallpaperImageHandler = function (image) {
+    this.wallpaperUrl = 'url(' +
+         (typeof image === 'string' ? image : URL.createObjectURL(image)) + ')';
+    if (this.element) {
+      this.element.style.backgroundImage = this.wallpaperUrl;
+      this.element.style.backgroundSize = '100% 100%';
+    }
+  };
 
   /**
    * ActivityWindow's fullscreen state is copying from the caller
@@ -216,6 +229,14 @@
     this.iframe = this.browser.element;
     this.screenshotOverlay = this.element.querySelector('.screenshot-overlay');
     this.fadeOverlay = this.element.querySelector('.fade-overlay');
+    if (this.wallpaperUrl) {
+      this.element.style.backgroundImage = this.wallpaperUrl;
+      this.element.style.backgroundSize = '100% 100%';
+    }
+    if (this.config.isRecentActivity) {
+      this.element.insertAdjacentHTML('beforeend',
+                                this.config.manifest.recent_loading_screen_fragment.join(''));
+    }
 
     // Copy fullscreen state from caller.
     if (this.isFullScreen()) {

@@ -2,8 +2,18 @@
   "name": "Messages",
   "description": "Gaia Messages",
   "type": "certified",
-  "launch_path": "/index.html",
+  "launch_path": "/recent_placeholder.html",
   "recent_icon": "/style/images/recent_icon.png",
+  "recent_loading_screen_fragment": [
+  "<div class=\"recent-activity-loading-screen\" style=\"width: 100%; height: 100%; background-color: transparent;\">",
+    "<div style=\"width: 100%; height: 15%; top: 10rem; background-color: rgb(50, 170, 170); text-align: center;\">",
+      "<span style=\"top: 5rem;\">Unread messages</span>",
+    "</div>",
+    "<div style=\"width:100%; height:85%; bottom:0rem; position:relative\">",
+      "<progress style=\"position:absolute; left:calc(50% - 1rem); top:calc(50% - 1rem)\">",
+      "</progress>",
+    "</div>",
+  "</div>"],
   "developer": {
     "name": "The Gaia Team",
     "url": "https://github.com/mozilla-b2g/gaia"
@@ -75,8 +85,8 @@
         "type": "recent",
         "id": "app://sms.gaiamobile.org/manifest.webapp"
       },
-      "href": "/index.html",
-      "disposition": "window"
+      "href": "/recent_placeholder.html",
+      "disposition": "inline"
     }
   },
   "messages": [
