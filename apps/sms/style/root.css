@@ -177,3 +177,21 @@ menu, nav, section, video, audio, canvas, progress, meter, time {
   margin: 0;
 }
 
+.loaded .messages_loading_progress {
+  visibility: hidden;
+}
+.messages_loading_progress {
+  visibility: visible;
+}
+
+.loaded .no_messages_placeholder {
+  visibility: visible;
+}
+
+.no_messages_placeholder {
+  visibility: hidden;
+  top: 40%;
+  left: 15%;
+  position: absolute;
+}
+

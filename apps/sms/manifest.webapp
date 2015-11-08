@@ -6,12 +6,10 @@
   "recent_icon": "/style/images/recent_icon.png",
   "recent_loading_screen_fragment": [
   "<div class=\"recent-activity-loading-screen\" style=\"width: 100%; height: 100%; background-color: transparent;\">",
-    "<div style=\"width: 100%; height: 15%; top: 10rem; background-color: rgb(50, 170, 170); text-align: center;\">",
-      "<span style=\"top: 5rem;\">Unread messages</span>",
+    "<div style=\"width: 100%; height: 15%; top: 10rem; background-color: rgba(50, 170, 170, 0.3);\">",
+      "<span style=\"position: absolute; top: 0.9rem; width: 100%; text-align: center; font-size: 2.5rem; line-height: 2.2rem; color: rgb(0, 0, 0);\">Unread messages</span>",
     "</div>",
     "<div style=\"width:100%; height:85%; bottom:0rem; position:relative\">",
-      "<progress style=\"position:absolute; left:calc(50% - 1rem); top:calc(50% - 1rem)\">",
-      "</progress>",
     "</div>",
   "</div>"],
   "developer": {
