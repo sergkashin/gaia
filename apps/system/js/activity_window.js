@@ -110,9 +110,9 @@
   ActivityWindow.prototype.wallpaperImageHandler = function (image) {
     this.wallpaperUrl = 'url(' +
          (typeof image === 'string' ? image : URL.createObjectURL(image)) + ')';
-    if (this.element) {
-      this.element.style.backgroundImage = this.wallpaperUrl;
-      this.element.style.backgroundSize = '100% 100%';
+    if (this.recent_loading_screen_element) {
+      this.recent_loading_screen_element.style.backgroundImage = this.wallpaperUrl;
+      this.recent_loading_screen_element.style.backgroundSize = '100% 100%';
     }
   };
 
@@ -229,13 +229,14 @@
     this.iframe = this.browser.element;
     this.screenshotOverlay = this.element.querySelector('.screenshot-overlay');
     this.fadeOverlay = this.element.querySelector('.fade-overlay');
-    if (this.wallpaperUrl) {
-      this.element.style.backgroundImage = this.wallpaperUrl;
-      this.element.style.backgroundSize = '100% 100%';
-    }
     if (this.config.isRecentActivity) {
       this.element.insertAdjacentHTML('beforeend',
                                 this.config.manifest.recent_loading_screen_fragment.join(''));
+      this.recent_loading_screen_element = this.element.querySelector('.recent-activity-loading-screen');
+      if (this.wallpaperUrl) {
+        this.recent_loading_screen_element.style.backgroundImage = this.wallpaperUrl;
+        this.recent_loading_screen_element.style.backgroundSize = '100% 100%';
+      }
     }
 
     // Copy fullscreen state from caller.

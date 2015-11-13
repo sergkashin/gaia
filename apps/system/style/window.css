@@ -450,11 +450,11 @@
 }
 
 .appWindow.slidetoleft {
-  animation: slideToLeft 0.3s forwards cubic-bezier(0.7, 0.0, 1.0, 1.0);
+  animation: slideLeft 0.3s forwards cubic-bezier(0.7, 0.0, 1.0, 1.0);
 }
 
 .appWindow.slidetoright {
-  animation: slideToRight 0.3s forwards cubic-bezier(0.7, 0.0, 1.0, 1.0);
+  animation: slideRight 0.3s forwards cubic-bezier(0.7, 0.0, 1.0, 1.0);
 }
 
 .appWindow.slide-from-bottom {

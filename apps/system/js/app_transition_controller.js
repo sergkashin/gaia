@@ -362,7 +362,11 @@
           this.handle_opening();
           break;
         case '_opened':
-          this.handle_opened();
+          if (evt.detail.isRecentActivity) {
+            setTimeout(this.handle_opened.bind(this), 1000);
+          } else {
+            this.handle_opened();
+          }
           break;
         case '_closed':
           this.handle_closed();
